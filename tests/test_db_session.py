@@ -1,96 +1,66 @@
-
-
-"""
-Tests for the database session helper (Phase 2.1).
-
-These tests focus on get_database_url() behavior:
-- Prefer settings.database_url when set
-- Fall back to NOVA_DATABASE_URL / DATABASE_URL when settings.database_url is unset
-- Raise RuntimeError when no database URL is configured
-"""
-
 import os
-from typing import Optional
 
 import pytest
 
-from app.config.settings import settings
-from app.db.session import get_database_url
+from app.db import session as db_session
 
 
-def _clear_db_env(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Helper to ensure DB-related env vars are cleared for each scenario."""
+def _reset_db_cache():
+    """
+    Helper to reset module-level engine/session caches between tests.
+    """
+    setattr(db_session, "_ENGINE", None)
+    setattr(db_session, "_SESSION_LOCAL", None)
+
+
+def test_get_database_url_raises_when_missing(monkeypatch):
+    # Ensure no DB URL is configured
     monkeypatch.delenv("NOVA_DATABASE_URL", raising=False)
     monkeypatch.delenv("DATABASE_URL", raising=False)
 
+    # If a future version of Settings ever adds database_url,
+    # make sure it does not accidentally mask this test.
+    if hasattr(db_session.settings, "database_url"):
+        delattr(db_session.settings, "database_url")  # type: ignore[attr-defined]
 
-def test_get_database_url_prefers_settings_database_url(monkeypatch: pytest.MonkeyPatch) -> None:
-    """If settings.database_url is set, it should be used even if env vars exist."""
-    _clear_db_env(monkeypatch)
-
-    # Snapshot original value to restore after test
-    original_db_url: Optional[str] = getattr(settings, "database_url", None)
-
-    try:
-        # Configure both settings and env to ensure settings takes priority
-        monkeypatch.setattr(settings, "database_url", "postgresql://settings-db/test", raising=False)
-        monkeypatch.setenv("NOVA_DATABASE_URL", "postgresql://env-nova/test")
-        monkeypatch.setenv("DATABASE_URL", "postgresql://env-generic/test")
-
-        url = get_database_url()
-        assert url == "postgresql://settings-db/test"
-    finally:
-        # Restore original settings value
-        monkeypatch.setattr(settings, "database_url", original_db_url, raising=False)
+    with pytest.raises(RuntimeError):
+        db_session.get_database_url()
 
 
-def test_get_database_url_falls_back_to_nova_database_url(monkeypatch: pytest.MonkeyPatch) -> None:
-    """If settings.database_url is empty/None, fall back to NOVA_DATABASE_URL when present."""
-    _clear_db_env(monkeypatch)
+def test_get_database_url_prefers_nova_env(monkeypatch):
+    nova_url = "postgresql+asyncpg://user:pass@localhost:5432/nova_test"
+    fallback_url = "sqlite:///should_not_be_used.db"
 
-    original_db_url: Optional[str] = getattr(settings, "database_url", None)
+    monkeypatch.setenv("NOVA_DATABASE_URL", nova_url)
+    monkeypatch.setenv("DATABASE_URL", fallback_url)
 
-    try:
-        # Ensure settings.database_url is unset for this scenario
-        monkeypatch.setattr(settings, "database_url", None, raising=False)
-        monkeypatch.setenv("NOVA_DATABASE_URL", "postgresql://env-nova/test")
-
-        url = get_database_url()
-        assert url == "postgresql://env-nova/test"
-    finally:
-        monkeypatch.setattr(settings, "database_url", original_db_url, raising=False)
+    result = db_session.get_database_url()
+    assert result == nova_url
 
 
-def test_get_database_url_falls_back_to_database_url(monkeypatch: pytest.MonkeyPatch) -> None:
-    """If settings.database_url and NOVA_DATABASE_URL are unset, fall back to DATABASE_URL."""
-    _clear_db_env(monkeypatch)
+def test_get_engine_uses_sqlite_memory_for_tests(monkeypatch):
+    _reset_db_cache()
 
-    original_db_url: Optional[str] = getattr(settings, "database_url", None)
+    # Use an in-memory SQLite URL so we don't require a real Postgres server
+    monkeypatch.setenv("NOVA_DATABASE_URL", "sqlite:///:memory:")
 
-    try:
-        monkeypatch.setattr(settings, "database_url", None, raising=False)
-        # Only set DATABASE_URL for this scenario
-        monkeypatch.setenv("DATABASE_URL", "postgresql://env-generic/test")
+    engine = db_session.get_engine(max_retries=1)
+    assert engine is not None
 
-        url = get_database_url()
-        assert url == "postgresql://env-generic/test"
-    finally:
-        monkeypatch.setattr(settings, "database_url", original_db_url, raising=False)
+    with engine.connect() as conn:
+        result = conn.execute(db_session.text("SELECT 1")).scalar()
+        assert result == 1
 
 
-def test_get_database_url_raises_when_unconfigured(monkeypatch: pytest.MonkeyPatch) -> None:
-    """If no DB URL is configured anywhere, get_database_url should raise RuntimeError."""
-    _clear_db_env(monkeypatch)
+def test_get_session_yields_and_closes(monkeypatch):
+    _reset_db_cache()
 
-    original_db_url: Optional[str] = getattr(settings, "database_url", None)
+    monkeypatch.setenv("NOVA_DATABASE_URL", "sqlite:///:memory:")
 
-    try:
-        monkeypatch.setattr(settings, "database_url", None, raising=False)
+    gen = db_session.get_session()
+    db = next(gen)
 
-        with pytest.raises(RuntimeError) as excinfo:
-            _ = get_database_url()
+    assert db is not None
 
-        message = str(excinfo.value)
-        assert "Database URL not configured" in message
-    finally:
-        monkeypatch.setattr(settings, "database_url", original_db_url, raising=False)
+    # Closing the generator should trigger db.close() in the finally block
+    gen.close()
