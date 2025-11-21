@@ -66,7 +66,8 @@ def _build_env() -> Dict[str, str]:
 
     # system env overrides defaults
     keys_of_interest = set(DEFAULTS.keys()) | set(REQUIRED_VARS_PROD) | {
-        "LUNCHMONEY_API_KEY"
+        "LUNCHMONEY_API_KEY",
+        "NOVA_ACTIONS_TOKEN",
     }
     for key in keys_of_interest:
         if key in os.environ:
@@ -121,6 +122,8 @@ class Settings:
 
         # Future integrations (Lunch Money, etc.)
         self.lunchmoney_api_key: Optional[str] = env.get("LUNCHMONEY_API_KEY")
+        # Optional Actions API token (for /actions/* auth in later phases)
+        self.actions_api_token: Optional[str] = env.get("NOVA_ACTIONS_TOKEN")
 
         # Version metadata
         self.version: Dict[str, Any] = _load_version()
