@@ -4,6 +4,10 @@ from fastapi import HTTPException
 
 from app.main import app
 
+# ---------------------------------------------------------------------------
+# Error handler and 4xx/5xx response structure tests
+# ---------------------------------------------------------------------------
+
 
 # Attach a test-only route that will raise an unhandled exception
 @app.get("/test-internal-error")
@@ -17,6 +21,10 @@ async def http_error_route():  # pragma: no cover - logic tested via handler
 
 client = TestClient(app, raise_server_exceptions=False)
 
+
+# ---------------------------------------------------------------------------
+# Error handler structure tests (HTTP 404 / 500)
+# ---------------------------------------------------------------------------
 
 def test_http_404_error_structure():
     response = client.get("/test-http-error")
@@ -52,3 +60,11 @@ def test_internal_error_handler_structure():
     assert "timestamp" in meta
     assert "nova_version" in meta
     assert "build" in meta
+
+
+# ---------------------------------------------------------------------------
+# Unknown route behavior tests
+# ---------------------------------------------------------------------------
+def test_unknown_path_returns_404():
+    response = client.get("/this-path-does-not-exist")
+    assert response.status_code == 404

@@ -435,3 +435,181 @@
 {"timestamp": "2025-11-20 14:08:37,702", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
 {"timestamp": "2025-11-20 14:08:41,243", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
 {"timestamp": "2025-11-20 14:08:41,483", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 17:23:50,262", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:23:50,263", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:23:50,263", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:23:50,264", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:23:50,264", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:23:50,265", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:23:50,265", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:23:50,266", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:23:50,266", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:23:50,267", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:23:50,267", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 17:23:50,267", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:23:50,267", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:23:50,268", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:23:50,268", "level": "ERROR", "logger": "nova.api", "message": "HTTP error", "event_type": "http_error", "path": "/test-http-error", "status_code": 404}
+{"timestamp": "2025-11-20 17:23:50,268", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/test-http-error", "method": "GET", "status_code": 404}
+{"timestamp": "2025-11-20 17:23:50,269", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/test-http-error \"HTTP/1.1 404 Not Found\""}
+{"timestamp": "2025-11-20 17:23:50,269", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:23:50,270", "level": "ERROR", "logger": "nova.api", "message": "Unhandled exception", "event_type": "unhandled_exception", "path": "/test-internal-error", "exc_info": "Traceback (most recent call last):\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py\", line 164, in __call__\n    await self.app(scope, receive, _send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 191, in __call__\n    with recv_stream, send_stream, collapse_excgroups():\n                                   ~~~~~~~~~~~~~~~~~~^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py\", line 162, in __exit__\n    self.gen.throw(value)\n    ~~~~~~~~~~~~~~^^^^^^^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_utils.py\", line 85, in collapse_excgroups\n    raise exc\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 193, in __call__\n    response = await self.dispatch_func(request, call_next)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/app/main.py\", line 54, in dispatch\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 168, in call_next\n    raise app_exc from app_exc.__cause__ or app_exc.__context__\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 144, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py\", line 85, in __call__\n    await self.app(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py\", line 63, in __call__\n    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py\", line 18, in __call__\n    await self.app(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/routing.py\", line 716, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/routing.py\", line 736, in app\n    await route.handle(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/routing.py\", line 290, in handle\n    await self.app(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 125, in app\n    await wrap_app_handling_exceptions(app, request)(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 111, in app\n    response = await f(request)\n               ^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 391, in app\n    raw_response = await run_endpoint_function(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 290, in run_endpoint_function\n    return await dependant.call(**values)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/tests/test_errors.py\", line 11, in internal_error_route\n    raise RuntimeError(\"boom\")\nRuntimeError: boom"}
+{"timestamp": "2025-11-20 17:23:50,277", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/test-internal-error \"HTTP/1.1 500 Internal Server Error\""}
+{"timestamp": "2025-11-20 17:26:12,356", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 17:26:12,622", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 17:26:16,292", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:26:16,293", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:26:16,294", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:26:16,294", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:26:16,295", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:26:16,295", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:26:16,296", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:26:16,296", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:26:16,296", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:26:16,297", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:26:16,297", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 17:26:16,297", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:26:16,298", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:26:16,298", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:26:16,299", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:26:16,299", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:49:05,900", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:49:05,901", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:49:05,902", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:49:05,903", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:49:05,903", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:49:05,903", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:49:05,904", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:49:05,904", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:49:05,905", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:49:05,905", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:49:05,906", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 17:49:05,906", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:49:05,906", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:49:05,907", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:49:05,907", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:49:05,907", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:35,855", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 17:52:36,154", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 17:52:44,648", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:44,649", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:44,649", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:44,650", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:44,651", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:44,651", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:44,652", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:44,652", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:44,652", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:44,653", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:44,653", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 17:52:44,653", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:44,654", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:44,654", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:44,654", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:44,655", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:55,461", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 17:52:55,701", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 17:52:59,780", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:59,781", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:59,782", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:59,783", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:59,783", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:59,783", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:59,784", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:59,784", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:59,785", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:59,785", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:59,786", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 17:52:59,786", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:59,786", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:52:59,787", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:52:59,787", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:52:59,788", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:55:24,196", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 17:55:24,437", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 17:55:32,968", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:55:32,969", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:55:32,969", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:55:32,970", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:55:32,971", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:55:32,971", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:55:32,972", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:55:32,972", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:55:32,972", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:55:32,973", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:55:32,973", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 17:55:32,973", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:55:32,974", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:55:32,974", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:55:32,975", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:55:32,975", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:57:43,331", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 17:57:43,584", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 17:57:47,748", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,750", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:57:47,750", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:57:47,751", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,751", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:57:47,752", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:57:47,752", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,753", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:57:47,753", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:57:47,754", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,754", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 17:57:47,754", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:57:47,754", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:57:47,755", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,755", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 17:57:47,756", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 17:57:47,756", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,756", "level": "ERROR", "logger": "nova.api", "message": "HTTP error", "event_type": "http_error", "path": "/test-http-error", "status_code": 404}
+{"timestamp": "2025-11-20 17:57:47,757", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/test-http-error", "method": "GET", "status_code": 404}
+{"timestamp": "2025-11-20 17:57:47,757", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/test-http-error \"HTTP/1.1 404 Not Found\""}
+{"timestamp": "2025-11-20 17:57:47,757", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,758", "level": "ERROR", "logger": "nova.api", "message": "Unhandled exception", "event_type": "unhandled_exception", "path": "/test-internal-error", "exc_info": "Traceback (most recent call last):\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py\", line 164, in __call__\n    await self.app(scope, receive, _send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 191, in __call__\n    with recv_stream, send_stream, collapse_excgroups():\n                                   ~~~~~~~~~~~~~~~~~~^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py\", line 162, in __exit__\n    self.gen.throw(value)\n    ~~~~~~~~~~~~~~^^^^^^^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_utils.py\", line 85, in collapse_excgroups\n    raise exc\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 193, in __call__\n    response = await self.dispatch_func(request, call_next)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/app/main.py\", line 54, in dispatch\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 168, in call_next\n    raise app_exc from app_exc.__cause__ or app_exc.__context__\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/base.py\", line 144, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py\", line 85, in __call__\n    await self.app(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py\", line 63, in __call__\n    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py\", line 18, in __call__\n    await self.app(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/routing.py\", line 716, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/routing.py\", line 736, in app\n    await route.handle(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/routing.py\", line 290, in handle\n    await self.app(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 125, in app\n    await wrap_app_handling_exceptions(app, request)(scope, receive, send)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 111, in app\n    response = await f(request)\n               ^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 391, in app\n    raw_response = await run_endpoint_function(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"/Users/jose/Nova/.venv/lib/python3.14/site-packages/fastapi/routing.py\", line 290, in run_endpoint_function\n    return await dependant.call(**values)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jose/Nova/tests/test_errors.py\", line 11, in internal_error_route\n    raise RuntimeError(\"boom\")\nRuntimeError: boom"}
+{"timestamp": "2025-11-20 17:57:47,765", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/test-internal-error \"HTTP/1.1 500 Internal Server Error\""}
+{"timestamp": "2025-11-20 17:57:47,765", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 17:57:47,766", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/this-path-does-not-exist", "method": "GET", "status_code": 404}
+{"timestamp": "2025-11-20 17:57:47,766", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/this-path-does-not-exist \"HTTP/1.1 404 Not Found\""}
+{"timestamp": "2025-11-20 18:00:58,054", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:00:58,055", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:00:58,056", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:00:58,056", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:00:58,057", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:00:58,057", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:00:58,058", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:00:58,058", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:00:58,059", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:00:58,059", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:00:58,059", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 18:00:58,059", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:00:58,060", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:00:58,060", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:00:58,061", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:00:58,061", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:01:00,814", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 18:01:01,080", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 18:07:33,593", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 18:07:33,891", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 18:08:02,799", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:08:02,801", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/health", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:08:02,801", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/health \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:08:02,802", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:08:02,802", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/status", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:08:02,803", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/status \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:08:02,803", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:08:02,804", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/version", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:08:02,804", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/version \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:08:02,804", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:08:02,805", "level": "INFO", "logger": "nova.actions", "message": "Actions handshake", "event_type": "actions_handshake", "path": "/actions/handshake"}
+{"timestamp": "2025-11-20 18:08:02,805", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/actions/handshake", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:08:02,805", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/actions/handshake \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:08:02,806", "level": "DEBUG", "logger": "asyncio", "message": "Using selector: KqueueSelector"}
+{"timestamp": "2025-11-20 18:08:02,806", "level": "INFO", "logger": "nova.api", "message": "API call", "event_type": "api_call", "path": "/", "method": "GET", "status_code": 200}
+{"timestamp": "2025-11-20 18:08:02,806", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/ \"HTTP/1.1 200 OK\""}
+{"timestamp": "2025-11-20 18:08:59,529", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 18:08:59,771", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 18:09:49,224", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 18:09:49,461", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}
+{"timestamp": "2025-11-20 18:11:38,779", "level": "INFO", "logger": "nova.api", "message": "Nova shutdown", "event_type": "shutdown"}
+{"timestamp": "2025-11-20 18:11:39,010", "level": "INFO", "logger": "nova.api", "message": "Nova startup complete", "event_type": "startup"}

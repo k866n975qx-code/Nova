@@ -3,9 +3,17 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
+# ---------------------------------------------------------------------------
+# Core endpoint and Actions API handshake tests
+# ---------------------------------------------------------------------------
+
 
 client = TestClient(app)
 
+
+# ---------------------------------------------------------------------------
+# Core status/version endpoint tests
+# ---------------------------------------------------------------------------
 
 def test_health_endpoint():
     response = client.get("/health")
@@ -58,6 +66,9 @@ def test_version_endpoint():
         assert key in data
 
 
+# ---------------------------------------------------------------------------
+# Actions API handshake tests
+# ---------------------------------------------------------------------------
 def test_actions_handshake_endpoint():
     response = client.get("/actions/handshake")
     assert response.status_code == 200
@@ -77,3 +88,14 @@ def test_actions_handshake_endpoint():
     assert isinstance(supported, list)
     assert len(supported) > 0
     assert "finance" in supported
+    assert "health" in supported
+    assert "training" in supported
+
+def test_root_endpoint():
+    response = client.get("/")
+    assert response.status_code == 200
+    body = response.json()
+    # BaseResponse-style wrapper
+    assert body["status"] == "ok"
+    assert "data" in body
+    assert "meta" in body
